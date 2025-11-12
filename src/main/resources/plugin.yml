@@ -1,0 +1,7 @@
+name: CuboriaClaim
+version: '1.0-SNAPSHOT'
+main: net.xamence.cuboriaclaim.CuboriaClaim
+api-version: '1.21'
+authors: [ Xamence ]
+description: The best claim plugin (for Cuboria)
+website: https://www.xamence.net
