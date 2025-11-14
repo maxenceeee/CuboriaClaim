@@ -6,23 +6,28 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Region implements InventoryHolder {
 
     private final int id;
     private final Set<Claim> claims;
+    private final UUID owner;
+
     private RegionInventory regionInventory;
     private long points;
 
+    private Map<UUID, Integer> permissions;
 
-    public Region(int id, long points) {
+    public Region(int id, long points, UUID owner) {
         this.id = id;
         this.points = points;
 
         this.claims = new HashSet<>();
         this.regionInventory = new RegionInventory(this);
+        this.owner = owner;
+
+        this.permissions = new HashMap<>();
     }
 
     public int getId() {
@@ -51,6 +56,22 @@ public class Region implements InventoryHolder {
 
     public void setPoints(long points) {
         this.points = points;
+    }
+
+    public void addClaim(Claim claim) {
+        this.claims.add(claim);
+    }
+
+    public void removeClaim(Claim claim) {
+        this.claims.remove(claim);
+    }
+
+    public UUID getOwner() {
+        return owner;
+    }
+
+    public Map<UUID, Integer> getPermissions() {
+        return permissions;
     }
 
     @Override
