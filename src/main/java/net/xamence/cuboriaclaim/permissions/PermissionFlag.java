@@ -1,5 +1,6 @@
 package net.xamence.cuboriaclaim.permissions;
 
+// SEE That : https://www.baeldung.com/java-bitmasking
 public enum PermissionFlag {
     BUILD(1),
     BREAK(1<<1),

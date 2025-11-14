@@ -1,6 +1,7 @@
 package net.xamence.cuboriaclaim.claim;
 
 import net.xamence.cuboriaclaim.region.Region;
+import net.xamence.cuboriaclaim.region.RegionManager;
 import net.xamence.cuboriaclaim.utils.ClaimNeighborUtils;
 
 import java.util.HashSet;
@@ -38,7 +39,7 @@ public class ClaimManager {
         Region finalRegion = null;
 
         if (neighbors.isEmpty()) {
-            finalRegion = regionManager.createRegion();
+            finalRegion = regionManager.createRegion(owner);
         } else if (neighbors.size() == 1) {
             finalRegion = neighbors.iterator().next();
         } else {

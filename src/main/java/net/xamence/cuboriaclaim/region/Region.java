@@ -19,6 +19,8 @@ public class Region implements InventoryHolder {
 
     private Map<UUID, Integer> permissions;
 
+    private boolean active;
+
     public Region(int id, long points, UUID owner) {
         this.id = id;
         this.points = points;
@@ -28,6 +30,8 @@ public class Region implements InventoryHolder {
         this.owner = owner;
 
         this.permissions = new HashMap<>();
+
+        this.active = true;
     }
 
     public int getId() {
@@ -72,6 +76,14 @@ public class Region implements InventoryHolder {
 
     public Map<UUID, Integer> getPermissions() {
         return permissions;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public boolean isActive() {
+        return active;
     }
 
     @Override
