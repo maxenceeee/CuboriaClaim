@@ -1,22 +1,46 @@
 package net.xamence.cuboriaclaim.claim;
 
-import org.bukkit.Location;
+import net.xamence.cuboriaclaim.region.Region;
+
+import java.util.UUID;
 
 public class Claim {
 
-    private final Location claimLocation;
-    private final ClaimRegion claimRegion;
+    private UUID owner;
+    private final String world;
+    private final int cx;
+    private final int cz;
 
-    public Claim(Location claimLocation, ClaimRegion claimRegion) {
-        this.claimLocation = claimLocation;
-        this.claimRegion = claimRegion;
+    private Region region;
+
+    public Claim(UUID owner, String world, int cx, int cz) {
+        this.owner = owner;
+        this.world = world;
+        this.cx = cx;
+        this.cz = cz;
     }
 
-    public Location getClaimLocation() {
-        return claimLocation;
+    public UUID getOwner() {
+        return owner;
     }
 
-    public ClaimRegion getClaimRegion() {
-        return claimRegion;
+    public String getWorld() {
+        return world;
+    }
+
+    public int getCx() {
+        return cx;
+    }
+
+    public int getCz() {
+        return cz;
+    }
+
+    public Region getRegion() {
+        return region;
+    }
+
+    public void setRegion(Region region) {
+        this.region = region;
     }
 }
