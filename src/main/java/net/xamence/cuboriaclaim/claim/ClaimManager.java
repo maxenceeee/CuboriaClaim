@@ -28,6 +28,8 @@ public class ClaimManager {
             int nz = cz + offset[1];
 
             Claim neighborClaim = index.get(world, nx, nz);
+            if(!neighborClaim.getRegion().getOwner().equals(owner)) continue;
+
             if (neighborClaim != null && neighborClaim.getRegion() != null) {
                 neighbors.add(neighborClaim.getRegion());
             }

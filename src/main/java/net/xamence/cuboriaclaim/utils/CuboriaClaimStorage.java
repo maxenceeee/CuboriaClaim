@@ -1,18 +1,20 @@
-package net.xamence.cuboriaclaim.claim;
+package net.xamence.cuboriaclaim.utils;
 
+import net.xamence.cuboriaclaim.claim.Claim;
+import net.xamence.cuboriaclaim.claim.ClaimIndex;
 import net.xamence.cuboriaclaim.region.Region;
 
 import java.io.File;
 import java.sql.*;
 import java.util.UUID;
 
-public class ClaimStorage {
+public class CuboriaClaimStorage {
 
     private final ClaimIndex index;
     private final RegionManager regionManager;
     private final Connection connection;
 
-    public ClaimStorage(ClaimIndex index, RegionManager regionManager, File dataFolder) throws SQLException {
+    public CuboriaClaimStorage(ClaimIndex index, RegionManager regionManager, File dataFolder) throws SQLException {
         this.index = index;
         this.regionManager = regionManager;
 
