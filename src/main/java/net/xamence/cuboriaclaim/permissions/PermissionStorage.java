@@ -1,6 +1,7 @@
 package net.xamence.cuboriaclaim.permissions;
 
 import net.xamence.cuboriaclaim.region.Region;
+import net.xamence.cuboriaclaim.region.RegionManager;
 
 import java.sql.*;
 import java.util.Map;
