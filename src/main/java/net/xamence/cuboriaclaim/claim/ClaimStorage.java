@@ -4,6 +4,7 @@ import net.xamence.cuboriaclaim.region.Region;
 
 import java.io.File;
 import java.sql.*;
+import java.util.UUID;
 
 public class ClaimStorage {
 
@@ -47,6 +48,40 @@ public class ClaimStorage {
     }
 
     public void saveRegion(Region region) throws SQLException {
-        //TODO !
+        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO region(id, owner, points) VALUES (?, ?, ?) ON CONFLICT(id) DO UPDATE SET owner=excluded.owner, points=excluded.points;");
+        preparedStatement.setInt(1, region.getId());
+        preparedStatement.setString(2, region.getOwner().toString());
+        preparedStatement.executeUpdate();
+    }
+
+
+    public void loadAll() throws SQLException {
+        Statement regionStatement = connection.createStatement();
+        ResultSet regionResultSet = regionStatement.executeQuery("SELECT * FROM region");
+        while (regionResultSet.next()) {
+             int id = regionResultSet.getInt("id");
+            UUID owner = UUID.fromString(regionResultSet.getString("owner"));
+            int points = regionResultSet.getInt("points");
+
+            regionManager.loadRegion(id, owner, points);
+        }
+
+        Statement claimStatement = connection.createStatement();
+        ResultSet claimResultSet = claimStatement.executeQuery("SELECT * FROM claim");
+        while (claimResultSet.next()) {
+            UUID owner = UUID.fromString(regionResultSet.getString("owner"));
+            String world = claimResultSet.getString("world");
+            int cx = claimResultSet.getInt("cx");
+            int cz = regionResultSet.getInt("cz");
+            int regionId = claimResultSet.getInt("region_id");
+
+            Region region = regionManager.getRegion(regionId);
+
+            Claim claim = new Claim(owner, world, cx, cz);
+            claim.setRegion(region);
+
+            index.add(claim);
+            region.addClaim(claim);
+        }
     }
 }
